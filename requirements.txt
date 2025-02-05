@@ -1,4 +1,3 @@
-timm==0.4.12
-transformers==4.15.0
-fairscale==0.4.4
-pycocoevalcap
+matplotlib==3.10.0
+Pillow==11.1.0
+Requests==2.32.3
