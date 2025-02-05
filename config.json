@@ -1,0 +1,24 @@
+{
+    "question_list": [
+        {
+            "key": "weather",
+            "prompt": "answer in one word among options:What is the weather in the image? choose one most possible Option:Sunny, Rainy, Snowy, Cloudy",
+            "whitelist": ["sunny", "rainy", "snowy", "cloudy"]
+        },
+        {
+            "key": "position",
+            "prompt": "answer in one word among options:Is the scene indoors or outdoors?choose one most possible Option:indoors,outdoors",
+            "whitelist": ["indoors", "outdoors"]
+        },
+        {
+            "key": "environment",
+            "prompt": "answer in one word, among option What type of environment is the most possible scene set in? choose one option:Open road, Grassland, Yard, Parking, Office, Classroom, Garage, Home",
+            "whitelist": ["open road", "grassland", "yard", "parking", "office", "classroom", "garage", "home"]
+        },
+        {
+            "key": "obstacles",
+            "prompt": "You are an advanced automated image annotator, specifically tasked with identifying whether any of the given options are visible as obstacles in an image. Your role is to analyze the image carefully and determine if any of the listed options appear. You must strictly follow the requirements outlined in the prompt.\n\nInstructions:\n1. Primary Task: Identify if there are any obstacles from the provided list visible in the image.\n2. Response Format:\n   - If one or more obstacles from the list are visible, provide their names exactly as listed in the \"Options\".\n   - If none of the listed obstacles are present, respond with the word \"none\".\n3. Focus on Accuracy: Only respond based on what is visible in the image and ensure your output strictly adheres to the options provided in the prompt. Do not infer or guess beyond the visual data.\n4. Example Question Format:\n   - \"If there are any obstacles among options visible in front, please specify. Options: Dog, Cat, Hedgehog, Mouse, Table, Dustbin. If none, just answer the word 'none'.\"\n5. Behavioral Expectation:\n   - Remain consistent and impartial in your analysis.\n   - Do not include any additional commentary, explanations, or responses beyond the required output.",
+            "whitelist": ["dog", "cat", "hedgehog", "mouse", "table", "dustbin", "none"]
+        }
+    ]
+}
