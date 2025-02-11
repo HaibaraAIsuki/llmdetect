@@ -122,6 +122,10 @@ def process_image(image_path, model, question_list):
             print(f"Error parsing response: {e}")
             sys.exit(1)
 
+    # 如果 position 字段为 "indoors"，则自动将 weather 字段清零
+    if result_for_image.get("position", "").lower() == "indoors":
+        result_for_image["weather"] = "0"
+
     return result_for_image
 
 def process_images(image_path, model, question_list):
@@ -203,8 +207,6 @@ def display_image_with_annotations(image_path, annotations):
     plt.show()
     plt.savefig("./pic", bbox_inches='tight', pad_inches=0.1)
     print("Image saved to .pic")
-
-    
 
 def display_results(json_file):
     """
