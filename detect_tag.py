@@ -9,7 +9,7 @@ import json
 import matplotlib.pyplot as plt
 
 # 如果你的 Ollama 端口不同，请在此处修改
-API_URL = "http://localhost:11434/api/generate"
+API_URL = "http://localhost:11435/api/generate"
 
 # 全局变量：是否显示标注（可根据需要使用或去掉）
 SHOW_ANNOTATION = True
@@ -123,8 +123,8 @@ def process_image(image_path, model, question_list):
             sys.exit(1)
 
     # 如果 position 字段为 "indoors"，则自动将 weather 字段清零
-    if result_for_image.get("position", "").lower() == "indoors":
-        result_for_image["weather"] = "0"
+    if result_for_image.get("position", "").lower() in( "indoors","indoor"):
+        result_for_image["weather"] = "null"
 
     return result_for_image
 
@@ -185,10 +185,10 @@ def display_image_with_annotations(image_path, annotations):
     if SHOW_ANNOTATION:
         for annotation in annotations:
             label = (
-                f"Weather: {annotation['weather']}, "
-                f"Position: {annotation['position']}, "
-                f"Environment: {annotation['environment']}, "
-                f"Obstacles: {annotation['obstacles']}"
+                f"Weather: {annotation['weather']}, \n"
+                f"Position: {annotation['position']}, \n"
+                f"Environment: {annotation['environment']},\n "
+                f"Obstacles: {annotation['obstacles']}\n"
             )
             position = [10, 10]  # 设置标签显示的位置（可根据需要调整）
 
@@ -223,9 +223,9 @@ def display_results(json_file):
         display_image_with_annotations(image_path, annotations)
 
 def main():
-    # 命令行参数：python ollama_inference_display.py /path/to/image_or_folder model_name
+    # 命令行参数：detect_tag.py /path/to/image_or_folder model_name
     if len(sys.argv) < 3:
-        print("Usage: python ollama_inference_display.py /path/to/image_or_folder model_name")
+        print("Usage: python detect_tag.py /path/to/image_or_folder model_name")
         sys.exit(1)
 
     input_path = sys.argv[1]
