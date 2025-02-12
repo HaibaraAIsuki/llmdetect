@@ -178,7 +178,8 @@ def load_json(json_file):
     return data
 
 def display_image_with_annotations(image_path, annotations):
-    """显示图片和标记标签"""
+    """显示图片和标记标签，并将带标注的图片保存到同级目录下的 pic 目录"""
+    
     # 打开图片
     image = Image.open(image_path)
 
@@ -208,10 +209,24 @@ def display_image_with_annotations(image_path, annotations):
                 bbox=dict(facecolor='white', alpha=0.5)
             )
 
+    # 创建同级目录下的 pic 目录（如果不存在）
+    save_dir = os.path.join(os.path.dirname(image_path), "pic")
+    os.makedirs(save_dir, exist_ok=True)  # 如果 pic 目录不存在，则创建
+
+    # 提取文件名和扩展名
+    image_name = os.path.basename(image_path)
+    name, ext = os.path.splitext(image_name)
+
+    # 构造保存文件名
+    save_path = os.path.join(save_dir, f"{name}_annotated{ext}")
+
+    # 保存图片到 pic 目录
+    plt.savefig(save_path, bbox_inches='tight', pad_inches=0.1)
+    print(f"Image saved to {save_path}")
+
     # 显示带标记标签的图片
     plt.show()
-    plt.savefig("./pic", bbox_inches='tight', pad_inches=0.1)
-    print("Image saved to .pic")
+    plt.clf()
 
 def display_results(json_file):
     """
