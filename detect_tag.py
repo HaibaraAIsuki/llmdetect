@@ -9,7 +9,7 @@ import json
 import matplotlib.pyplot as plt
 
 # 如果你的 Ollama 端口不同，请在此处修改
-API_URL = "http://localhost:11435/api/generate"
+API_URL = "http://localhost:11434/api/generate"
 
 # 全局变量：是否显示标注（可根据需要使用或去掉）
 SHOW_ANNOTATION = True
