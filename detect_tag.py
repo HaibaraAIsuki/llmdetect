@@ -51,14 +51,19 @@ def extract_whitelisted_words(text, whitelist):
     matched_unique = list(dict.fromkeys(matched))
     return matched_unique
 
-def load_config(config_file):
-    """从配置文件加载配置"""
+def load_config():
+    """从同级目录加载配置文件"""
+    # 获取当前脚本所在的目录
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # 构造 config.json 的完整路径
+    config_path = os.path.join(script_dir, "config.json")
+    
     try:
-        with open(config_file, "r", encoding="utf-8") as f:
+        with open(config_path, "r", encoding="utf-8") as f:
             config = json.load(f)
         return config["question_list"]
     except FileNotFoundError:
-        print(f"配置文件 {config_file} 未找到。")
+        print(f"配置文件 {config_path} 未找到。")
         sys.exit(1)
     except KeyError:
         print(f"配置文件中缺少 'question_list' 字段。")
